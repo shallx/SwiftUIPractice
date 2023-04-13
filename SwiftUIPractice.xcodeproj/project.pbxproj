@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		634097A629E7D41C00540F06 /* furnitureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634097A529E7D41C00540F06 /* furnitureData.swift */; };
 		6368FB8029E68D3B00037F07 /* SwiftUIPracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368FB7F29E68D3B00037F07 /* SwiftUIPracticeApp.swift */; };
 		6368FB8229E68D3B00037F07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368FB8129E68D3B00037F07 /* ContentView.swift */; };
 		6368FB8429E68D3D00037F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6368FB8329E68D3D00037F07 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		634097A529E7D41C00540F06 /* furnitureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = furnitureData.swift; sourceTree = "<group>"; };
 		6368FB7C29E68D3B00037F07 /* SwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6368FB7F29E68D3B00037F07 /* SwiftUIPracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPracticeApp.swift; sourceTree = "<group>"; };
 		6368FB8129E68D3B00037F07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		634097A429E7D3F800540F06 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				634097A529E7D41C00540F06 /* furnitureData.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		6368FB7329E68D3B00037F07 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +85,7 @@
 		6368FB9229E68EBD00037F07 /* Furniture */ = {
 			isa = PBXGroup;
 			children = (
+				634097A429E7D3F800540F06 /* data */,
 				6368FB9329E68ED500037F07 /* reference.rtf */,
 				6368FB9529E68EF300037F07 /* FurnitureMainView.swift */,
 			);
@@ -152,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634097A629E7D41C00540F06 /* furnitureData.swift in Sources */,
 				6368FB8229E68D3B00037F07 /* ContentView.swift in Sources */,
 				6368FB8029E68D3B00037F07 /* SwiftUIPracticeApp.swift in Sources */,
 				6368FB9629E68EF300037F07 /* FurnitureMainView.swift in Sources */,

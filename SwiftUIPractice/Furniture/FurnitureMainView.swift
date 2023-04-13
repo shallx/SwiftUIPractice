@@ -14,16 +14,26 @@ struct FurnitureMainView_Previews: PreviewProvider {
 }
 
 struct FurnitureHome : View {
+    @State var index = 0
+    @Environment(\.colorScheme) private var colorScheme
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 
-                ScrollView(.vertical, showsIndicators: false) {
+                switch index {
+                case 0:
                     HomeTabView()
+                case 1:
+                    SingleTapView(title: "Search")
+                case 2:
+                    SingleTapView(title: "Cart")
+                default:
+                    SingleTapView(title: "Profile")
                 }
-                .padding()
+                
                 Spacer()
-                TabView()
+                BottomNav(index: $index)
             }
             .edgesIgnoringSafeArea(.bottom)
             .navigationTitle("Furniture")
@@ -47,7 +57,7 @@ struct FurnitureHome : View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        //
+                        UIApplication.shared.windows.first?.rootViewController?.overrideUserInterfaceStyle = self.colorScheme == .dark ? .light : .dark
                     } label: {
                         Image(systemName: "moon.fill")
                             .font(.system(size: 22))
@@ -60,8 +70,8 @@ struct FurnitureHome : View {
     }
 }
 
-struct TabView : View {
-    @State var index = 0
+struct BottomNav : View {
+    @Binding var index: Int
     @Environment(\.colorScheme) var scheme
     
     var body: some View{
@@ -137,35 +147,76 @@ struct SearchBar: View {
     }
 }
 
+struct SingleTapView : View {
+    let title: String
+    
+    var body: some View {
+        VStack {
+            Text(title)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
 struct HomeTabView: View {
     var body : some View {
-        SearchBar()
-        HStack {
-            Text("Today's Pick")
-                .fontWeight(.bold)
-                .font(.title)
-            Spacer()
-        }
-        .padding(.top, 22)
-        
-        VStack {
-            Image("main")
-            Text("ArmChair")
-                .fontWeight(.bold)
-                .font(.title)
-                .padding(.top, -30)
-                .padding(.bottom)
+        ScrollView(.vertical, showsIndicators: false) {
+            SearchBar()
+            HStack {
+                Text("Today's Pick")
+                    .fontWeight(.bold)
+                    .font(.title)
+                Spacer()
+            }
+            .padding(.top, 22)
             
-            Text("$1200")
-                .foregroundColor(.gray)
-                .padding(.top, 8)
+            VStack {
+                Image("main")
+                Text("ArmChair")
+                    .fontWeight(.bold)
+                    .font(.title)
+                    .padding(.top, -30)
+                    .padding(.bottom)
+                
+                Text("$1200")
+                    .foregroundColor(.gray)
+                    .padding(.top, 8)
+            }
+            .background(
+                Color.primary.opacity(0.06)
+                    .frame(width: UIScreen.main.bounds.size.width - 30)
+                    .cornerRadius(25)
+                    .padding(.top, 95)
+            )
+            .padding(.top, 25)
+            
+            HStack {
+                Text("Recommended for you")
+                    .fontWeight(.bold)
+                    .font(.title)
+                Spacer()
+            }
+            .padding(.top, 30)
+            .padding(.bottom, 20)
+            
+            
+            ForEach(furnitures, id: \.self){ furniture in
+                HStack(spacing: 15){
+                    ForEach(furniture){i in
+                        VStack {
+                            Image(i.image)
+                            Text(i.title)
+                                .fontWeight(.bold)
+                            Text(i.price)
+                                .padding(.top, 6)
+                        }
+                        .padding()
+                        .background(Color.primary.opacity(0.06))
+                        .cornerRadius(10)
+                }
+            }
+            }
         }
-        .background(
-            Color.primary.opacity(0.06)
-                .frame(width: UIScreen.main.bounds.size.width - 30)
-                .cornerRadius(25)
-                .padding(.top, 95)
-        )
-        .padding(.top, 25)
+        .padding()
     }
 }
